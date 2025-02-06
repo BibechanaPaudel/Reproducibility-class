@@ -20,3 +20,8 @@ zdfsubset3<-zdf[26,]
 #Subset the zdf dataframe to only include the values in the column zsquared in the 180th row.
 zdfsubset4<-zdf$zsquared[180]
 #Annotate your code, commit the changes and push it to your GitHub
+#Download the Tips.csv file from Canvas. Use the read.csv() function to read the data into R so that the missing values are properly coded. **Note the missing values  reported in the data as a period (i.e., “.”). How do you know the data were read correctly?
+data<-read.csv("C:/Users/paude/Downloads/TipsR.csv", na.strings = ".")
+str(data)
+summary(data)
+#To know that the data were read correctly we can check the structure and summary of the data.We can also see the data by clicking it in the environment that will open our file and we can check if the data is correct or not.  
