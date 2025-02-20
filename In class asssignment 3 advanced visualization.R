@@ -73,7 +73,7 @@ fig1 <- ggarrange(
         )
 fig1
 help(ggarrange)
-# The common.legend option added a common legend for the arranged boxplots.
+# The common.legend option added a common legend for the arranged boxplots that is representative for all the plots.
         
         
 ####Use geom_pwc() to add t.test pairwise comparisons to the three plots made above. Save each plot as a new R object, and combine them again with ggarange as you did in question 4. 
