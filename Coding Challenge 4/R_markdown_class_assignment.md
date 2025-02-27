@@ -2,16 +2,22 @@
 
 [Plant Disease](https://doi.org/10.1094/PDIS-06-21-1253-RE)
 
-# Take the code you wrote for coding challenge 3, question 5, and incorporate it into your R markdown file. Some of you have already been doing this, which is great! Your final R markdown file should have the following elements.
+\####Take the code you wrote for coding challenge 3, question 5, and
+incorporate it into your R markdown file. Some of you have already been
+doing this, which is great! Your final R markdown file should have the
+following elements.
 
-## At the top of the document, make a clickable link to the manuscript where these data are published. The link is here:
+\####At the top of the document, make a clickable link to the manuscript
+where these data are published. The link is here:
 
 - Noel, Z.A., Roze, L.V., Breunig, M., Trail, F. 2022. Endophytic fungi
   as promising biocontrol agent to protect wheat from Fusarium
   graminearum head blight. Plant Disease.
   <https://doi.org/10.1094/PDIS-06-21-1253-RE>
 
-## Read the data using a relative file path with na.strings option set to “na”. This means you need to put the Mycotoxin.csv file we have used for the past two weeks into your directory, which git tracks.
+\####Read the data using a relative file path with na.strings option set
+to “na”. This means you need to put the Mycotoxin.csv file we have used
+for the past two weeks into your directory, which git tracks.
 
 ``` r
 ####Load the data
@@ -23,7 +29,10 @@ library(ggpubr)
 cbbPalette <- c("#000000", "#E69F00", "#56B4E9", "#009E73", "#F0E442", "#0072B2", "#D55E00", "#CC79A7")
 ```
 
-## Make a separate code chunk for the figures plotting the DON data, 15ADON, and Seedmass, and one for the three combined using ggarrange.
+\####Make a separate code chunk for the figures plotting the DON data,
+15ADON, and Seedmass, and one for the three combined using ggarrange.
+
+## DON
 
 ``` r
 ####Using ggplot, create a boxplot of DON by Treatment so that the plot looks like the image below.
@@ -50,7 +59,9 @@ mycotoxin.DON
     ## Warning: Removed 8 rows containing missing values or values outside the scale range
     ## (`geom_point()`).
 
-![](R_markdown_class_assignment_files/figure-gfm/unnamed-chunk-2-1.png)<!-- -->
+![](R_markdown_class_assignment_files/figure-gfm/DON%20by%20Treatment-1.png)<!-- -->
+
+## X15DON
 
 ``` r
 ####Change the y-variable to plot X15ADON and MassperSeed_mg. The y-axis label should now be “15ADON” and “Seed Mass (mg)”. Save plots made in questions 1 and 3 into three separate R objects.
@@ -62,9 +73,6 @@ mycotoxin.X15ADON<-ggplot(mycotoxin,aes(Treatment,X15ADON, fill=Cultivar))+    #
   scale_fill_manual(values=cbbPalette[c(3,4)])+
   theme_classic()+
   facet_wrap(~Cultivar, scales="free")
-```
-
-``` r
 mycotoxin.X15ADON
 ```
 
@@ -74,7 +82,9 @@ mycotoxin.X15ADON
     ## Warning: Removed 10 rows containing missing values or values outside the scale range
     ## (`geom_point()`).
 
-![](R_markdown_class_assignment_files/figure-gfm/unnamed-chunk-4-1.png)<!-- -->
+![](R_markdown_class_assignment_files/figure-gfm/X15ADON%20by%20Treatment-1.png)<!-- -->
+
+## MassperSeed
 
 ``` r
 mycotoxin.seed<-ggplot(mycotoxin,aes(Treatment,MassperSeed_mg, fill=Cultivar))+    #define asthetics x-axis as Treatment and y-axis as MassperSeed_mg
@@ -94,7 +104,9 @@ mycotoxin.seed
     ## Warning: Removed 2 rows containing missing values or values outside the scale range
     ## (`geom_point()`).
 
-![](R_markdown_class_assignment_files/figure-gfm/unnamed-chunk-4-2.png)<!-- -->
+![](R_markdown_class_assignment_files/figure-gfm/MassperSeed%20by%20Treatment-1.png)<!-- -->
+
+## Combine fig
 
 ``` r
 ####Use geom_pwc() to add t.test pairwise comparisons to the three plots made above. Save each plot as a new R object, and combine them again with ggarange as you did in question 4. 
@@ -112,7 +124,7 @@ mycotoxin.DON.significance
     ## Warning: Removed 8 rows containing missing values or values outside the scale range
     ## (`geom_point()`).
 
-![](R_markdown_class_assignment_files/figure-gfm/unnamed-chunk-5-1.png)<!-- -->
+![](R_markdown_class_assignment_files/figure-gfm/Combined%20figure-1.png)<!-- -->
 
 ``` r
 mycotoxin.X15ADON.significance<-mycotoxin.X15ADON+
@@ -129,7 +141,7 @@ mycotoxin.X15ADON.significance
     ## Warning: Removed 10 rows containing missing values or values outside the scale range
     ## (`geom_point()`).
 
-![](R_markdown_class_assignment_files/figure-gfm/unnamed-chunk-5-2.png)<!-- -->
+![](R_markdown_class_assignment_files/figure-gfm/Combined%20figure-2.png)<!-- -->
 
 ``` r
 mycotoxin.seed.significance<-mycotoxin.seed+
@@ -146,7 +158,7 @@ mycotoxin.seed.significance
     ## Warning: Removed 2 rows containing missing values or values outside the scale range
     ## (`geom_point()`).
 
-![](R_markdown_class_assignment_files/figure-gfm/unnamed-chunk-5-3.png)<!-- -->
+![](R_markdown_class_assignment_files/figure-gfm/Combined%20figure-3.png)<!-- -->
 
 ``` r
  #Combining all the figures into one.        
@@ -201,4 +213,4 @@ fig2 <- ggarrange(
         fig2
 ```
 
-![](R_markdown_class_assignment_files/figure-gfm/unnamed-chunk-5-4.png)<!-- -->
+![](R_markdown_class_assignment_files/figure-gfm/Combined%20figure-4.png)<!-- -->

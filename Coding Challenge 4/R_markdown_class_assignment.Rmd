@@ -5,9 +5,9 @@ date: "2025-02-27"
 output: 
   pdf_document:
     toc: TRUE
+  html_document:
   md_document:
     variant: gfm
-  html_document:
 ---
 
 ## Link to the manuscript 
@@ -35,7 +35,7 @@ cbbPalette <- c("#000000", "#E69F00", "#56B4E9", "#009E73", "#F0E442", "#0072B2"
 
 ## DON
 
-```{r}
+```{r DON by Treatment}
 ####Using ggplot, create a boxplot of DON by Treatment so that the plot looks like the image below.
 #a.	Jitter points over the boxplot and fill the points and boxplots Cultivar with two colors from the cbbPallete introduced last week. 
 #b.	Change the transparency of the jittered points to 0.6. 
@@ -58,7 +58,7 @@ mycotoxin.DON
 
 ## X15DON
 
-```{r}
+```{r X15ADON by Treatment}
 ####Change the y-variable to plot X15ADON and MassperSeed_mg. The y-axis label should now be “15ADON” and “Seed Mass (mg)”. Save plots made in questions 1 and 3 into three separate R objects.
 mycotoxin.X15ADON<-ggplot(mycotoxin,aes(Treatment,X15ADON, fill=Cultivar))+    #define asthetics x-axis as Treatment and y-axis as X15ADON
   geom_boxplot(outlier.shape=NA)+
@@ -72,7 +72,7 @@ mycotoxin.X15ADON
 ```
 
 ## MassperSeed
-```{r}
+```{r MassperSeed by Treatment}
 mycotoxin.seed<-ggplot(mycotoxin,aes(Treatment,MassperSeed_mg, fill=Cultivar))+    #define asthetics x-axis as Treatment and y-axis as MassperSeed_mg
   geom_boxplot(outlier.shape=NA)+
   geom_point(position=position_jitterdodge(0.05), shape=21, alpha=0.6)+
@@ -88,7 +88,7 @@ mycotoxin.seed
 
 
 ## Combine fig
-```{r}
+```{r Combined figure}
 ####Use geom_pwc() to add t.test pairwise comparisons to the three plots made above. Save each plot as a new R object, and combine them again with ggarange as you did in question 4. 
 mycotoxin.DON.significance<-mycotoxin.DON+
 geom_pwc(aes(group=Treatment), method="t.test", label = "{p.adj.format}{p.adj.signif}", hide.ns=T)    #do the pairwise t.test,display the significance by p value and *
