@@ -15,10 +15,11 @@ There are the links to the analysis files viewable on GitHub(.md). The .RMD file
 
 
 ## File Tree
-
+```r
 install.packages("fs")
 library(fs)
 fs::dir_tree()
+```
 
 
 ```bash
