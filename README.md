@@ -12,7 +12,7 @@ There are the links to the analysis files viewable on GitHub(.md). The .RMD file
 
 
 - [R_markdown_class](Coding Challenge 4/R_markdown_class_assignment.md)
-- [README](README.md)
+
 
 ## File Tree
 
@@ -25,27 +25,21 @@ fs::dir_tree()
 ├── Basic_R
 │   ├── In class assignment1.R  #Basic R code in class assignment
 │   └── TipsR.csv      #Raw data for basic R
-├── Coding_exercise_2
+├── Coding Challenge 4
+├── R_markdown_class_assignment.html
+│   ├── R_markdown_class_assignment.md      #Class assignment R markdown github flavoured markdown
+│   ├── R_markdown_class_assignment.pdf     #Class assignment R markdown pdf
+│   └── R_markdown_class_assignment.Rmd     #Class assignment R markdown Rmd
+│   └── R_markdown_class_assignment_files
+│       └── figure-gfm
+│           ├── Combined figure-4.png
+│           ├── DON by Treatment-1.png
+│           ├── MassperSeed by Treatment-1.png
+│           └── X15ADON by Treatment-1.png
 ├── Data_Visualization   #In class assignment and coding challenge for data visualization
 │   ├── BacterialAlpha.csv
 │   ├── Coding Visualization Assignment.Rmd    #coding assignment visualization part 1 rmd file
 │   ├── Coding-Visualization-Assignment.md    #coding assignment visualization part 1 md file
-│   ├── Coding-Visualization-Assignment_files  # figures created from visualization part 1 and 2
-│   │   └── figure-gfm
-│   │       ├── unnamed-chunk-1-1.png
-│   │       ├── unnamed-chunk-1-2.png
-│   │       ├── unnamed-chunk-2-1.png
-│   │       ├── unnamed-chunk-2-2.png
-│   │       ├── unnamed-chunk-2-3.png
-│   │       ├── unnamed-chunk-2-4.png
-│   │       ├── unnamed-chunk-2-5.png
-│   │       ├── unnamed-chunk-3-1.png
-│   │       ├── unnamed-chunk-4-1.png
-│   │       ├── unnamed-chunk-4-2.png
-│   │       ├── unnamed-chunk-4-3.png
-│   │       ├── unnamed-chunk-5-1.png
-│   │       └── unnamed-chunk-5-2.png
-│   ├── Coding_Visualization_2 _Assignment .R   #coding assignment data visualization part 2
 │   ├── diff_abund.csv                          # Raw data used for advanced visualization
 │   ├── In class assignment 2 visualization.R   # In class assignment datavisualization part 1
 │   ├── In class asssignment 3 advanced visualization.R   #In class assignment data visualization part 2
