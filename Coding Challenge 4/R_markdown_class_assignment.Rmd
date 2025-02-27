@@ -139,9 +139,9 @@ fig2 <- ggarrange(
 # Question 3.
 Knit your document together in the following formats: 
 a.	.docx (word document) OR .pdf with a table of contents
-[Link to pdf]("Coding Challenge 4/R_markdown_class_assignment.pdf")
+
 b.	GitHub flavored markdown (.md file). 
-[Link to md]("Coding Challenge 4/ R_markdown_class_assignment.md")
+ Done
 
 # Question 4.
 Push the .docx or .pdf and .md files to GitHub inside a directory called Coding Challenge 4. 
