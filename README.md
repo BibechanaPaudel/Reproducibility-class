@@ -2,7 +2,10 @@
 Reproducibility github setup
 Learning github 
 
-## [![DOI](https://zenodo.org/badge/924429703.svg)](https://doi.org/10.5281/zenodo.14934312)
+##DOI
+
+[![DOI](https://zenodo.org/badge/924429703.svg)](https://doi.org/10.5281/zenodo.14934312)
+
 ## Links to analysis
 
 There are the links to the analysis files viewable on GitHub(.md). The .RMD files and .HTML rendered files are also available. 
