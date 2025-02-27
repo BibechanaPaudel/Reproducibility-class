@@ -2,7 +2,7 @@
 Reproducibility github setup
 Learning github 
 
-##DOI
+## DOI
 
 [![DOI](https://zenodo.org/badge/924429703.svg)](https://doi.org/10.5281/zenodo.14934312)
 
