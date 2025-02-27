@@ -10,16 +10,36 @@ output:
     variant: gfm
 ---
 
+
 ## Link to the manuscript 
 [Plant Disease](https://doi.org/10.1094/PDIS-06-21-1253-RE)
 
-####Take the code you wrote for coding challenge 3, question 5, and incorporate it into your R markdown file. Some of you have already been doing this, which is great! Your final R markdown file should have the following elements.
+# Question 1.
+Explain the following
+a.YAML header
+The YAML header is the R markdown's initial portion containing YAML arguments such as title, author, and output format demarcated by three dashes on either side. 
+ This is the example of YAML header.
+---
+ title: "R markdown coding"
+ author: "Bibechana Paudel"
+ date: "2025-02-26"
+ output:
+ html_document:
+ toc: true   #table of content
+   
+---
 
-####At the top of the document, make a clickable link to the manuscript where these data are published. The link is here: 
+ b.	Literate programming
+ Literate programming is the practice of mixing code and descriptive writing in order to execute and explain a data analysis simultaneously in the same document.
+
+# Question 2
+Take the code you wrote for coding challenge 3, question 5, and incorporate it into your R markdown file. Some of you have already been doing this, which is great! Your final R markdown file should have the following elements.
+
+a.At the top of the document, make a clickable link to the manuscript where these data are published. The link is here: 
 
 - Noel, Z.A., Roze, L.V., Breunig, M., Trail, F. 2022. Endophytic fungi as promising biocontrol agent to protect wheat from Fusarium graminearum head blight. Plant Disease. https://doi.org/10.1094/PDIS-06-21-1253-RE
  
-####Read the data using a relative file path with na.strings option set to “na”. This means you need to put the Mycotoxin.csv file we have used for the past two weeks into your directory, which git tracks. 
+b.Read the data using a relative file path with na.strings option set to “na”. This means you need to put the Mycotoxin.csv file we have used for the past two weeks into your directory, which git tracks. 
 
 
 ```{r}
@@ -31,7 +51,7 @@ library(ggpubr)
 ####Load cbbPalette
 cbbPalette <- c("#000000", "#E69F00", "#56B4E9", "#009E73", "#F0E442", "#0072B2", "#D55E00", "#CC79A7")
 ```
-####Make a separate code chunk for the figures plotting the DON data, 15ADON, and Seedmass, and one for the three combined using ggarrange. 
+c.Make a separate code chunk for the figures plotting the DON data, 15ADON, and Seedmass, and one for the three combined using ggarrange. 
 
 ## DON
 
@@ -115,4 +135,26 @@ fig2 <- ggarrange(
         
         
 ```
+
+# Question 3.
+Knit your document together in the following formats: 
+a.	.docx (word document) OR .pdf with a table of contents
+[Link to pdf](Coding Challenge 4/R_markdown_class_assignment.pdf)
+b.	GitHub flavored markdown (.md file). 
+[Link to md](Coding Challenge 4/ R_markdown_class_assignment.md)
+
+# Question 4.
+Push the .docx or .pdf and .md files to GitHub inside a directory called Coding Challenge 4. 
+Done
+
+# Question 5.	
+Now edit, commit, and push the README file for your repository and include the following elements.
+a.	A clickable link in your README to your GitHub flavored .md file
+b.	A file tree of your GitHub repository. 
+Done
+
+# Question 6.
+Please provide me a clickable link to your GitHub
+
+[Reproducibility_class](https://github.com/BibechanaPaudel/Reproducibility-class.git)
 
