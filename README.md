@@ -11,8 +11,8 @@ Learning github
 There are the links to the analysis files viewable on GitHub(.md). The .RMD files and .HTML rendered files are also available. 
 
 
-- [Analysis 1](Data_Visualization/Coding-Visualization-Assignment.md)
-- [Analysis 2](README.md)
+- [R_markdown_class](Coding Challenge 4/R_markdown_class_assignment.md)
+- [README](README.md)
 
 ## File Tree
 
