@@ -3,11 +3,11 @@ title: "R_markdown_class_assignment"
 author: "Bibechana Paudel"
 date: "2025-02-27"
 output: 
-  pdf_document:
-    toc: TRUE
-  html_document:
   md_document:
     variant: gfm
+  html_document:
+  pdf_document:
+    toc: TRUE
 ---
 
 
@@ -139,9 +139,9 @@ fig2 <- ggarrange(
 # Question 3.
 Knit your document together in the following formats: 
 a.	.docx (word document) OR .pdf with a table of contents
-[Link to pdf](Coding Challenge 4/R_markdown_class_assignment.pdf)
+[Link to pdf]("Coding Challenge 4/R_markdown_class_assignment.pdf")
 b.	GitHub flavored markdown (.md file). 
-[Link to md](Coding Challenge 4/ R_markdown_class_assignment.md)
+[Link to md]("Coding Challenge 4/ R_markdown_class_assignment.md")
 
 # Question 4.
 Push the .docx or .pdf and .md files to GitHub inside a directory called Coding Challenge 4. 
