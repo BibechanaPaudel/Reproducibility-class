@@ -1,0 +1,58 @@
+---
+title: "R markdown coding"
+author: "Bibechana Paudel"
+date: "2025-02-26"
+output:
+  html_document:
+    toc: true   #table of content
+    toc_float: true  
+  md_document:
+    variant: gfm
+  word_document:
+  pdf_document:
+---
+
+This is an example of R code. 
+```{r R code example, include=TRUE, echo=FALSE}   
+#include=FALSE does not show the code and output, and  echo=TRUE for code in the knitted file. If we want to include the output only then it will be include=False and echo=false. 
+#this is R code.
+summary(mtcars)
+```
+This is how to include figures. 
+```{r Include figures}
+library(ggplot2)
+data("mtcars")
+ggplot(mtcars,aes(x=wt,y=mpg))+
+  geom_point()
+```
+ R markdown formatting options
+ 
+# First level header
+## Second level header
+### third level header
+
+*italics*  #single asterisk for italics
+
+**bold**   #double asterisk for bold
+
+- one item    #dash gives the bullet 
+- another item
+  - subitem  # tab and dash gives the sub item 
+
+
+## Links
+[Link to my github](https://github.com/BibechanaPaudel/RT-qPCR-data-analysis)  # get the link to the desired file using[]
+
+## Images
+![Shrek ggplot](shrek.jpg)    ### To get the images stored in the same directory.
+
+## Formatted tables
+```{r}
+#install.packages("kable")
+library(knitr)
+kable(mtcars, digits= 3, format="markdown")   #digits gives digits after decimals 
+```
+
+## Link to repository with file tree and zenedo
+
+[Link to README.md](https://github.com/BibechanaPaudel/Reproducibility-class/blob/main/README.md)
