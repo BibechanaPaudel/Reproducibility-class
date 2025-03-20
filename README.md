@@ -10,7 +10,6 @@ Learning github
 
 There are the links to the analysis files viewable on GitHub(.md). The .RMD files and .HTML rendered files are also available. 
 
-
 [R_markdown_class](Coding Challenge 4/R_markdown_class_assignment.md)
 
 
