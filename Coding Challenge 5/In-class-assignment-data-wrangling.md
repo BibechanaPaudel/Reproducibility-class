@@ -1,13 +1,17 @@
-1.  3 pts. Download two .csv files from Canvas called DiversityData.csv
-    and Metadata.csv, and read them into R using relative file paths.
+# Question 1
+
+Download two .csv files from Canvas called DiversityData.csv and
+Metadata.csv, and read them into R using relative file paths.
 
 ``` r
 diversity<-read.csv("Data wrangling/DiversityData.csv", na.strings="na")
 meta<-read.csv("Data wrangling/Metadata.csv",na.strings="na")
 ```
 
-2.  4 pts. Join the two dataframes together by the common column ‘Code’.
-    Name the resulting dataframe alpha.
+# Question 2
+
+Join the two dataframes together by the common column ‘Code’. Name the
+resulting dataframe alpha.
 
 ``` r
 library(tidyverse)
@@ -28,31 +32,27 @@ library(tidyverse)
 alpha<-(left_join(diversity, meta, by = "Code"))  #used the left join function for joining by column Code
 ```
 
-3.  4 pts. Calculate Pielou’s evenness index: Pielou’s evenness is an
-    ecological parameter calculated by the Shannon diversity index
-    (column Shannon) divided by the log of the richness column.
+# Question 3
 
-<!-- -->
-
-1.  Using mutate, create a new column to calculate Pielou’s evenness
-    index.
-2.  Name the resulting dataframe alpha_even.
+Calculate Pielou’s evenness index: Pielou’s evenness is an ecological
+parameter calculated by the Shannon diversity index (column Shannon)
+divided by the log of the richness column. a. Using mutate, create a new
+column to calculate Pielou’s evenness index. b. Name the resulting
+dataframe alpha_even.
 
 ``` r
 alpha_even<-mutate(alpha,even=shannon/log(richness))  #mutate function add a new column
 ```
 
-4.  4.  Pts. Using tidyverse language of functions and the pipe, use the
-        summarise function and tell me the mean and standard error
-        evenness grouped by crop over time.
+# Question 4
 
-<!-- -->
-
-1.  Start with the alpha_even dataframe
-2.  Group the data: group the data by Crop and Time_Point.
-3.  Summarize the data: Calculate the mean, count, standard deviation,
-    and standard error for the even variable within each group.
-4.  Name the resulting dataframe alpha_average
+Using tidyverse language of functions and the pipe, use the summarise
+function and tell me the mean and standard error evenness grouped by
+crop over time. a. Start with the alpha_even dataframe b. Group the
+data: group the data by Crop and Time_Point. c. Summarize the data:
+Calculate the mean, count, standard deviation, and standard error for
+the even variable within each group. d. Name the resulting dataframe
+alpha_average
 
 ``` r
 alpha_average<-alpha_even %>%    #used pipe function %>% 
@@ -66,22 +66,18 @@ alpha_average<-alpha_even %>%    #used pipe function %>%
     ## `summarise()` has grouped output by 'Crop'. You can override using the
     ## `.groups` argument.
 
-5.  4.  Pts. Calculate the difference between the soybean column, the
-        soil column, and the difference between the cotton column and
-        the soil column
+# Question 5
 
-<!-- -->
-
-1.  Start with the alpha_average dataframe
-2.  Select relevant columns: select the columns Time_Point, Crop, and
-    mean.even.
-3.  Reshape the data: Use the pivot_wider function to transform the data
-    from long to wide format, creating new columns for each Crop with
-    values from mean.even.
-4.  Calculate differences: Create new columns named diff.cotton.even and
-    diff.soybean.even by calculating the difference between Soil and
-    Cotton, and Soil and Soybean, respectively.
-5.  Name the resulting dataframe alpha_average2
+Calculate the difference between the soybean column, the soil column,
+and the difference between the cotton column and the soil column a.
+Start with the alpha_average dataframe b. Select relevant columns:
+select the columns Time_Point, Crop, and mean.even. c. Reshape the data:
+Use the pivot_wider function to transform the data from long to wide
+format, creating new columns for each Crop with values from mean.even.
+d. Calculate differences: Create new columns named diff.cotton.even and
+diff.soybean.even by calculating the difference between Soil and Cotton,
+and Soil and Soybean, respectively. e. Name the resulting dataframe
+alpha_average2
 
 ``` r
 alpha_average2<-alpha_average %>% 
@@ -91,18 +87,15 @@ alpha_average2<-alpha_average %>%
   mutate(diff.soybean.even=Soil-Soybean)
 ```
 
-6.  4 pts. Connecting it to plots
+# Question 6
 
-<!-- -->
-
-1.  Start with the alpha_average2 dataframe
-2.  Select relevant columns: select the columns Time_Point,
-    diff.cotton.even, and diff.soybean.even.
-3.  Reshape the data: Use the pivot_longer function to transform the
-    data from wide to long format, creating a new column named diff that
-    contains the values from diff.cotton.even and diff.soybean.even.
-4.  This might be challenging, so I’ll give you a break. The code is
-    below.
+Connecting it to plots a. Start with the alpha_average2 dataframe b.
+Select relevant columns: select the columns Time_Point,
+diff.cotton.even, and diff.soybean.even. c. Reshape the data: Use the
+pivot_longer function to transform the data from wide to long format,
+creating a new column named diff that contains the values from
+diff.cotton.even and diff.soybean.even. i. This might be challenging, so
+I’ll give you a break. The code is below.
 
 pivot_longer(c(diff.cotton.even, diff.soybean.even), names_to = “diff”)
 
@@ -125,8 +118,11 @@ alpha_average2 %>%
 
 ![](In-class-assignment-data-wrangling_files/figure-gfm/unnamed-chunk-6-1.png)<!-- -->
 
-7.  2 pts. Commit and push a gfm .md file to GitHub inside a directory
-    called Coding Challenge 5. Provide me a link to your github written
-    as a clickable link in your .pdf or .docx
+# Question 7
 
-\[Coding Challenge 5\]
+Commit and push a gfm .md file to GitHub inside a directory called
+Coding Challenge 5. Provide me a link to your github written as a
+clickable link in your .pdf or .docx
+
+[Coding Challenge
+5](https://github.com/BibechanaPaudel/Reproducibility-class)
