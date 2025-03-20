@@ -124,5 +124,8 @@ Commit and push a gfm .md file to GitHub inside a directory called
 Coding Challenge 5. Provide me a link to your github written as a
 clickable link in your .pdf or .docx
 
-[Coding Challenge
-5](https://github.com/BibechanaPaudel/Reproducibility-class)
+[My github
+link](https://github.com/BibechanaPaudel/Reproducibility-class)
+
+[Coding challenge
+5](https://github.com/BibechanaPaudel/Reproducibility-class/tree/main/Coding_Challenge_5)
