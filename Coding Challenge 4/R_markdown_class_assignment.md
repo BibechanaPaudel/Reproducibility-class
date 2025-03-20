@@ -9,9 +9,7 @@ initial portion containing YAML arguments such as title, author, and
 output format demarcated by three dashes on either side. This is the
 example of YAML header. — title: “R markdown coding” author: “Bibechana
 Paudel” date: “2025-02-26” output: html_document: toc: true \#table of
-content
-
-------------------------------------------------------------------------
+content —
 
 2.  Literate programming Literate programming is the practice of mixing
     code and descriptive writing in order to execute and explain a data
@@ -235,10 +233,9 @@ fig2 <- ggarrange(
 # Question 3.
 
 Knit your document together in the following formats: a. .docx (word
-document) OR .pdf with a table of contents [Link to
-pdf](Coding%20Challenge%204/R_markdown_class_assignment.pdf) b. GitHub
-flavored markdown (.md file). [Link to
-md](Coding%20Challenge%204/%20R_markdown_class_assignment.md)
+document) OR .pdf with a table of contents
+
+2.  GitHub flavored markdown (.md file). Done
 
 # Question 4.
 
@@ -256,4 +253,5 @@ Done
 
 Please provide me a clickable link to your GitHub
 
-[Reproducibility_class](https://github.com/BibechanaPaudel/Reproducibility-class.git)
+[Coding Challenge
+5](https://github.com/BibechanaPaudel/Reproducibility-class.git)

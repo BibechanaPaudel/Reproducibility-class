@@ -26,7 +26,6 @@ The YAML header is the R markdown's initial portion containing YAML arguments su
  output:
  html_document:
  toc: true   #table of content
-   
 ---
 
  b.	Literate programming
@@ -156,5 +155,4 @@ Done
 # Question 6.
 Please provide me a clickable link to your GitHub
 
-[Reproducibility_class](https://github.com/BibechanaPaudel/Reproducibility-class.git)
-
+[Coding Challenge 5](https://github.com/BibechanaPaudel/Reproducibility-class.git)
