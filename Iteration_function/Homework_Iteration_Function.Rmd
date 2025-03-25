@@ -1,0 +1,197 @@
+---
+title: "Homework Iteration and Function"
+author: "Bibechana Paudel"
+date: "2025-03-25"
+output:
+  html_document:
+    toc: TRUE
+    toc_float: TRUE
+  md_document:
+    variant: gfm
+---
+
+### Function to convert Fahrenheit to celsius
+```{r}
+#(5*(degree_f-32)/9)
+(5*(32-32)/9)
+### Creating a function 
+F_to_C<-function(f_temp){     ### the ()has the variable     
+  ### {}has the code
+ celsius<-(5*(f_temp-32)/9) ### saving the output as the Celsius
+ return(celsius)    ###returns output
+}
+
+F_to_C(32)   ### after creating the function we can run the code as number R function with the desired variable. 
+F_to_C(-40)
+```
+
+### Function to convert celsius to  Fahrenheit
+```{r}
+### Write a function to convert celsius to fahrenheiht using the conversion of F = C x (9/5)+32
+C_to_F<-function(celsius_temp){
+  fahrenheit<-(celsius_temp*(9/5)+32)
+  return(fahrenheit)
+}
+C_to_F(-40)
+C_to_F(32)
+```
+
+
+### Iteration function in base R
+Iterations are useful for reproducibility, helps to reduce copy and paste errors.
+```{r}
+rep("A",3)   ### rep function for repeat: repeat A 3 times
+rep(c("A","B"),10) ###repeat A and B ten times
+rep(c(1,2,5,3),4, each=5) ### repeat 1,2,5,and 3 4 times and 5 times each.
+```
+
+### seq() function 
+Helps towrite sequence of numbers
+```{r}
+1:7
+seq(from=1, to=7) #sequence of number from 1 to 7.
+seq(from=0, to=10, by=2)  ##sequence of numbers from 0 to 10 by 2s.
+```
+
+### seq_along() 
+To generate a sequence of numbers based on non-integer values.
+
+```{r}
+# use the built in LETTERS vector for an example.
+LETTERS
+seq_along(LETTERS)   
+```
+
+
+### The for loop
+```{r}
+for(i in 1:10){
+ print(i*2 )    ### for each value of i(1 to 10), it gives the output using the 2 times of i until it reaches the 10. 
+}
+
+```
+
+
+### Combining functions and iterations
+```{r}
+for(i in -30:100){   ###for every value of i from -30 to 100, it converts the Fahrenheit to celsius and print the result. 
+  result<-F_to_C(i)
+  print(result)
+}
+###But we cannot save those output as they are in the console and we need to copy and paste that.
+```
+Step 1. Set a R object to NULL
+
+Step 2. Set your for loop
+
+Step 3. Save the result of your for loop into a dataframe each iteration
+
+Step 4. append one row of the dataframe to the null object each iteration of the loop. 
+
+```{r}
+celsius.df<-NULL
+for(i in -30:100){
+  result<-data.frame(F_to_C(i), i)    ##it creates a dataframe called as result with two columns and one column will have the fahrenheit and the other with the celsius converted value
+  print(result)
+  
+  celsius.df<-rbind.data.frame(celsius.df,result)   ### rbind will bind the results to new iterations.  It basically binds the previous iterations to new one. 
+}
+celsius.df
+```
+
+### Challenge example
+Load the data and required library
+```{r}
+EC50.data<-read.csv("Iteration_function/EC50_all.csv",na.strings="na")
+library(tidyverse)
+# install.packages("drc")
+library(drc)
+str(EC50.data)
+```
+
+
+```{r}
+isolate1 <- drm(100 * EC50.data$relgrowth[EC50.data$is == "ILSO_5-41c"] ~ 
+        EC50.data$conc[EC50.data$is == "ILSO_5-41c"], 
+                       fct = LL.4(fixed = c(NA, NA, NA, NA), 
+                                  names = c("Slope", "Lower", "Upper", "EC50")), 
+                       na.action = na.omit)
+    # outputs the summary of the paramters including the estimate, standard
+    # error, t-value, and p-value outputs it into a data frame called
+    # summary.mef.fit for 'summary of fit'
+    summary.fit <- data.frame(summary(isolate1)[[3]])
+    # outputs the summary of just the EC50 data including the estimate, standard
+    # error, upper and lower bounds of the 95% confidence intervals around the
+    # EC50
+    EC50 <- ED(isolate1, respLev = c(50), type = "relative", 
+        interval = "delta")[[1]]
+    
+```
+
+### The loop
+```{r}
+###unique function find the unique value of the character 
+nm<-unique(EC50.data$is)     ###seq along the character vector nm.
+for (i in seq_along(nm)) {
+  isolate1 <- drm(100 * EC50.data$relgrowth[EC50.data$is == nm[[i]]] ~ 
+        EC50.data$conc[EC50.data$is == nm[[i]]], 
+                       fct = LL.4(fixed = c(NA, NA, NA, NA), 
+                                  names = c("Slope", "Lower", "Upper", "EC50")), 
+                       na.action = na.omit)
+  print(nm[[i]])
+    # outputs the summary of the paramters including the estimate, standard
+    # error, t-value, and p-value outputs it into a data frame called
+    # summary.mef.fit for 'summary of fit'
+    summary.fit <- data.frame(summary(isolate1)[[3]])
+    # outputs the summary of just the EC50 data including the estimate, standard
+    # error, upper and lower bounds of the 95% confidence intervals around the
+    # EC50
+    EC50 <- ED(isolate1, respLev = c(50), type = "relative", 
+        interval = "delta")[[1]]
+    EC50
+}
+```
+
+
+```{r}
+EC50.ll4<-NULL
+nm<-unique(EC50.data$is)     ###seq along the character vector nm.
+for (i in seq_along(nm)) {
+  isolate1 <- drm(100 * EC50.data$relgrowth[EC50.data$is == nm[[i]]] ~ 
+        EC50.data$conc[EC50.data$is == nm[[i]]], 
+                       fct = LL.4(fixed = c(NA, NA, NA, NA), 
+                                  names = c("Slope", "Lower", "Upper", "EC50")), 
+                       na.action = na.omit)
+  print(nm[[i]])
+    # outputs the summary of the paramters including the estimate, standard
+    # error, t-value, and p-value outputs it into a data frame called
+    # summary.mef.fit for 'summary of fit'
+    summary.fit <- data.frame(summary(isolate1)[[3]])
+    # outputs the summary of just the EC50 data including the estimate, standard
+    # error, upper and lower bounds of the 95% confidence intervals around the
+    # EC50
+    EC50 <- ED(isolate1, respLev = c(50), type = "relative", 
+        interval = "delta")[[1]]
+    isolate.ec_1<-data.frame(nm[[i]], EC50)
+    EC50.ll4<-rbind.data.frame(EC50.ll4,isolate.ec_1)
+    EC50
+}
+```
+
+
+### Loop using tidyverse
+```{r}
+EC50.data %>%
+  group_by(is) %>%     ####group by the isolate column
+  nest() %>%      #### nest function helps to create a data frame within the dataframe. 
+  mutate(ll.4.mod = map(data, ~drm(.$relgrowth ~ .$conc,     ####create a new column called LL.4 , map function tells that we want to  (it is for loop contained within the function), period(.) symbol inherits all the columns from the from the data. The ‘.’ tells R that we are considering all the data. Then a $ followed by the column headers in the data as the input into our drm function.
+                              fct = LL.4(fixed = c(NA, NA, NA, NA), 
+                                         names = c("Slope", "Lower", "Upper", "EC50"))))) %>%
+  ### we want to mat the function over the model to scrub the EC50 value. 
+  mutate(ec50 = map(ll.4.mod, ~ED(., 
+                              respLev = c(50),    
+                              type = "relative",
+                              interval = "delta")[[1]])) %>%
+  unnest(ec50) ###unnest will  ‘extract’ the value from the nesting. 
+```
+
