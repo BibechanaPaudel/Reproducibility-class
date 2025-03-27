@@ -258,4 +258,4 @@ clickable link in your .pdf or .docx
 
 [Github](https://github.com/BibechanaPaudel/Reproducibility-class/tree/main/Iteration_function)
 
-\[md_file\]
+[md_file](https://github.com/BibechanaPaudel/Reproducibility-class/blob/main/Iteration_function/Coding_challenge_6.md)
