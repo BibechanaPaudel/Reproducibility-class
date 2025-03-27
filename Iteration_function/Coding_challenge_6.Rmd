@@ -1,0 +1,152 @@
+---
+title: "Coding challenge Iterations and Function"
+author: "Bibechana Paudel"
+date: "2025-03-26"
+output: 
+html_document
+---
+
+### Question 1
+Regarding reproducibility, what is the main point of writing your own functions and iterations? 
+Answer: Writing our own function and iterations will help to reduce the copy and paste error in the case we have to use the same code on different data. Also, we can easily modify the code if we have our own function. To add, the iterations will help to handle the large data more efficiently.   
+
+### Question 2
+In your own words, describe how to write a function and a for loop in R and how they work. Give me specifics like syntax, where to write code, and how the results are returned. 
+Answer: In R, to write a function, I start by giving the name of the function and use the function() to define function, inside the paranthesis , I give the input values that function will use. The function() is followed by the curly bracket where we write the code. 
+For example: bp<-function(a, b){
+result<-a+b
+}
+Here bp is the name to the function, and  is the input variable that will be used when the function is called. 
+Likewise, for the for loop in R:
+for(i in 1:10){
+print(i*3)
+}
+Here, the keyword to start the loop is for. i is the loop variable and 1:10 specifies the range followed by the curly bracket inside which we have our code to be executed. This loop will print 3 times 1 to 3 times 10 ,one at a time. 
+
+This dataset contains the population and coordinates (latitude and longitude) of the 40 most populous cities in the US, along with Auburn, AL. Your task is to create a function that calculates the distance between Auburn and each other city using the Haversine formula. To do this, you'll write a for loop that goes through each city in the dataset and computes the distance from Auburn. Detailed steps are provided below.
+
+### Question 3
+Read in the Cities.csv file from Canvas using a relative file path.
+```{r}
+Cities<-read.csv("Iteration_function/Cities.csv", na.strings = "na")
+```
+
+### Question 4
+Write a function to calculate the distance between two pairs of coordinates based on the Haversine formula (see below). The input into the function should be lat1, lon1, lat2, and lon2. The function should return the object distance_km. All the code below needs to go into the function.
+
+# convert to radians
+rad.lat1 <- lat1 * pi/180
+rad.lon1 <- lon1 * pi/180
+rad.lat2 <- lat2 * pi/180
+rad.lon2 <- lon2 * pi/180
+
+# Haversine formula
+delta_lat <- rad.lat2 - rad.lat1
+delta_lon <- rad.lon2 - rad.lon1
+a <- sin(delta_lat / 2)^2 + cos(rad.lat1) * cos(rad.lat2) * sin(delta_lon / 2)^2
+c <- 2 * asin(sqrt(a)) 
+
+# Earth's radius in kilometers
+earth_radius <- 6378137
+
+# Calculate the distance
+distance_km <- (earth_radius * c)/1000
+```{r}
+distance_km<-function(lat1, lon1, lat2, lon2){
+ rad.lat1 <- lat1 * pi/180
+rad.lon1 <- lon1 * pi/180
+rad.lat2 <- lat2 * pi/180
+rad.lon2 <- lon2 * pi/180
+
+# Haversine formula
+delta_lat <- rad.lat2 - rad.lat1
+delta_lon <- rad.lon2 - rad.lon1
+a <- sin(delta_lat / 2)^2 + cos(rad.lat1) * cos(rad.lat2) * sin(delta_lon / 2)^2
+c <- 2 * asin(sqrt(a)) 
+
+# Earth's radius in kilometers
+earth_radius <- 6378137
+distance_km <- (earth_radius * c)/1000
+return(distance_km)
+}
+distance_km(1,2,3,4)
+```
+
+
+### Question 5
+Using your function, compute the distance between Auburn, AL and New York City 
+a.	Subset/filter the Cities.csv data to include only the latitude and longitude values you need and input as input to your function. 
+b.	The output of your function should be 1367.854 km
+```{r}
+library(tidyverse)
+  distance<-Cities %>% 
+    filter((city=="Auburn" & state_id=="AL")|(city=="New York" & state_id=="NY")) %>%
+    select("state_id", "lat", "long") %>%
+    pivot_wider(names_from=state_id, values_from=c(lat,long)) %>% 
+    mutate(AL_to_NY=distance_km(lat_AL,long_AL, lat_NY, long_NY)) 
+distance$AL_to_NY
+```
+
+### Question 6
+Now, use your function within a for loop to calculate the distance between all other cities in the data. The output of the first 9 iterations is shown below. 
+## [1] 1367.854
+## [1] 3051.838
+## [1] 1045.521
+## [1] 916.4138
+## [1] 993.0298
+## [1] 1056.022
+## [1] 1239.973
+## [1] 162.5121
+## [1] 1036.99
+```{r}
+for (i in seq_along(Cities$city)) {
+      lat1 <- Cities$lat[Cities$city=="Auburn"]
+      lon1 <- Cities$long[Cities$city=="Auburn"]
+      lat2<-Cities$lat[i]
+      lon2<-Cities$lon[i]
+     # Call dist function directly and store the result
+      distancekm <- distance_km(lat1, lon1, lat2, lon2)
+       # Print the distance
+      print(distancekm)
+
+    }
+ 
+
+```
+
+Bonus point if you can have the output of each iteration append a new row to a dataframe, generating a new column of data. In other words, the loop should create a dataframe with three columns called city1, city2, and distance_km, as shown below. The first six rows of the dataframe are shown below.
+
+```{r}
+distance_df<-NULL
+
+for (i in seq_along(Cities$city)) {
+      lat1 <- Cities$lat[Cities$city=="Auburn"]
+      lon1 <- Cities$long[Cities$city=="Auburn"]
+      lat2<-Cities$lat[i]
+      lon2<-Cities$lon[i]
+     # Call dist function directly and store the result
+      distancekm <- distance_km(lat1, lon1, lat2, lon2)
+       # Print the distance
+      distance_df<-rbind(distance_df,data.frame(
+        city1 = "Auburn",
+          city2 = Cities$city[i],
+          distance_km = distancekm
+      ))
+
+    }
+distance_df
+```
+##         City1  City2 Distance_km
+## 1    New York Auburn   1367.8540
+## 2 Los Angeles Auburn   3051.8382
+## 3     Chicago Auburn   1045.5213
+## 4       Miami Auburn    916.4138
+## 5     Houston Auburn    993.0298
+## 6      Dallas Auburn   1056.0217
+
+
+### Question 7
+Commit and push a gfm .md file to GitHub inside a directory called Coding Challenge 6. Provide me a link to your github written as a clickable link in your .pdf or .docx
+
+
+
