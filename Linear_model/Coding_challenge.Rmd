@@ -3,11 +3,11 @@ title: "Coding challenge linear model"
 author: "Bibechana Paudel"
 date: "2025-04-02"
 output:
-  md_document: 
-    variant: gfm
   html_document:
      toc: TRUE
      toc_float: TRUE
+  md_document: 
+    variant: gfm
 ---
 
 ## Question 1
@@ -97,5 +97,7 @@ Answer:  The letters above the bars represent statistical groupings based on Tuk
 
 ## Question 6
 Generate the gfm .md file along with a .html, .docx, or .pdf. Commit, and push the .md file to github and turn in the .html, .docx, or .pdf to Canvas. Provide me a link here to your github.
-[Github]
-[md.file]
+
+[Github](https://github.com/BibechanaPaudel/Reproducibility-class)
+
+[md.file](https://github.com/BibechanaPaudel/Reproducibility-class/blob/main/Linear_model/Coding_challenge.md)

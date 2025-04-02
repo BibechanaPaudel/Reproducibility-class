@@ -342,4 +342,8 @@ and 6 promotes the emergence.
 
 Generate the gfm .md file along with a .html, .docx, or .pdf. Commit,
 and push the .md file to github and turn in the .html, .docx, or .pdf to
-Canvas. Provide me a link here to your github. \[Github\] \[md.file\]
+Canvas. Provide me a link here to your github.
+
+[Github](https://github.com/BibechanaPaudel/Reproducibility-class)
+
+[md.file](https://github.com/BibechanaPaudel/Reproducibility-class/blob/main/Linear_model/Coding_challenge.md)
