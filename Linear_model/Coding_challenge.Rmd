@@ -1,0 +1,101 @@
+---
+title: "Coding challenge linear model"
+author: "Bibechana Paudel"
+date: "2025-04-02"
+output:
+  md_document: 
+    variant: gfm
+  html_document:
+     toc: TRUE
+     toc_float: TRUE
+---
+
+## Question 1
+Read in the data called “PlantEmergence.csv” using a relative file path and load the following libraries. tidyverse, lme4, emmeans, multcomp, and multcompView. Turn the Treatment , DaysAfterPlanting and Rep into factors using the function as.factor
+STAND$Treatment <- as.factor(STAND$Treatment) # example shown here.
+```{r}
+library(tidyverse)
+library(lme4)
+library(emmeans)
+library(multcomp)
+library(multcompView)
+Plantemergence<-read.csv("Linear_model/PlantEmergence.csv", na.strings="na") ### load the data
+Plantemergence$Treatment<-as.factor(Plantemergence$Treatment)
+Plantemergence$DaysAfterPlanting<-as.factor(Plantemergence$DaysAfterPlanting)
+Plantemergence$Rep<-as.factor(Plantemergence$Rep)
+```
+
+## Question 2
+Fit a linear model to predict Emergence using Treatment and DaysAfterPlanting along with the interaction. Provide the summary of the linear model and ANOVA results.
+```{r}
+lm1<-lm(Emergence~Treatment*DaysAfterPlanting, data=Plantemergence)
+summary(lm1)
+anova(lm1)
+```
+
+## Question 3
+Based on the results of the linear model in question 2, do you need to fit the
+interaction term? Provide a simplified linear model without the interaction term but still testing both main effects. Provide the summary and ANOVA results. Then, interpret the intercept and the coefficient for Treatment 2.
+Answer: No, we do not need to fit the interaction term since the interaction of Day after planting and treatment is not significant as shown by the summary of linear model and the anova. 
+```{r}
+lm2<-lm(Emergence~Treatment+DaysAfterPlanting, data=Plantemergence)
+summary(lm2)
+```
+Answer: The intercept is the average days of emergence for Treatment 1,which is 182.163. The coefficient for Treatment 2 is -134.531 meaning that the emergence of plant with treatment 2 is expected to decrease by 134.531 units in comparison to treatment 1.
+
+## Question 4
+Calculate the least square means for Treatment using the emmeans package and
+perform a Tukey separation with the compact letter display using the cld function.Interpret the results.
+```{r}
+lsmeans<-emmeans(lm2, ~Treatment)
+results_lsmeans<-cld(lsmeans,alpha=0.05, details=T)
+results_lsmeans
+```
+Answer: In the result, the different number under. group signifies that the group are significantly different. Here, the lowest emergence is in Treatment 2, followed by 7. In addition, treatment 7, 1,9,4, and 8 are statistically similar. Moreover, the Treatment 6,3 , and 5 have large number of emergence but they are statistically similar to each other and all other treatment except treatment 2.
+
+## Question 5
+
+The provided function lets you dynamically add a linear model plus one factor from that model and plots a bar chart with letters denoting treatment differences. Use this model to generate the plot shown below. Explain the significance of the letters.
+
+```{r}
+plot_cldbars_onefactor <- function(lm_model, factor) {
+data <- lm_model$model
+variables <- colnames(lm_model$model)
+dependent_var <- variables[1]
+independent_var <- variables[2:length(variables)]
+lsmeans <- emmeans(lm_model, as.formula(paste("~", factor))) # estimate
+lsmeans
+Results_lsmeans <- cld(lsmeans, alpha = 0.05, reversed = TRUE, details =
+TRUE, Letters = letters) # contrast with Tukey adjustment by default.
+# Extracting the letters for the bars
+sig.diff.letters <- data.frame(Results_lsmeans$emmeans[,1],
+str_trim(Results_lsmeans$emmeans[,7]))
+colnames(sig.diff.letters) <- c(factor, "Letters")
+# for plotting with letters from significance test
+ave_stand2 <- lm_model$model %>%
+group_by(!!sym(factor)) %>%
+dplyr::summarize(
+ave.emerge = mean(.data[[dependent_var]], na.rm = TRUE),
+se = sd(.data[[dependent_var]]) / sqrt(n())
+) %>%
+left_join(sig.diff.letters, by = factor) %>%
+mutate(letter_position = ave.emerge + 10 * se)
+plot <- ggplot(data, aes(x = !! sym(factor), y = !! sym(dependent_var))) +
+stat_summary(fun = mean, geom = "bar") +
+stat_summary(fun.data = mean_se, geom = "errorbar", width = 0.5) +
+ylab("Number of emerged plants") +
+geom_jitter(width = 0.02, alpha = 0.5) +
+geom_text(data = ave_stand2, aes(label = Letters, y = letter_position),
+size = 5) +
+xlab(as.character(factor)) +
+theme_classic()
+return(plot)
+}
+plot1<- plot_cldbars_onefactor(lm2,"Treatment")
+```
+Answer:  The letters above the bars represent statistical groupings based on Tukey’s HSD at a significance level of 0.05. The different letters in the plot signifies the significantly different groups while those that share the the same letter are not significantly different from each other. In the plot, treatment 2 with c has the lowest emergence and is significantly different from all other treatments.Treatments labeled with a (3, 5, 6) have the highest emergence and do not differ significantly among themselves. Treatment 7 as indicated by b has lower emergence than the "a" group.The ab group (1, 4, 8, 9) falls between the highest and lowest emergence levels, showing intermediate performance. To sum,Treatment 2  negatively affects emergence, while Treatments 3, 5, and 6  promotes the emergence.
+
+## Question 6
+Generate the gfm .md file along with a .html, .docx, or .pdf. Commit, and push the .md file to github and turn in the .html, .docx, or .pdf to Canvas. Provide me a link here to your github.
+[Github]
+[md.file]
