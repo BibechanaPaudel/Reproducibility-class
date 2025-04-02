@@ -1,0 +1,112 @@
+---
+title: "Linear model"
+author: "Bibechana Paudel"
+date: "2025-04-01"
+output:
+  
+  html_document:
+     toc: TRUE
+     toc_float: TRUE
+  md_document: 
+    variant: gfm
+---
+
+```{r}
+##Load the data 
+data("mtcars")
+## Load the required libraries
+library(ggplot2)
+library(tidyverse)
+```
+
+## Linear model
+```{r}
+ggplot(mtcars, aes(x = wt, y = mpg)) +
+  geom_smooth(method = lm, se = FALSE, color = "grey") +
+  geom_point(aes(color = wt)) +
+  xlab("Weight") + 
+  ylab("Miles per gallon") +
+  scale_colour_gradient(low = "forestgreen", high = "black") +
+  theme_classic()
+###has strong positive relation. We know the relation is not random by using the linear model. 
+lm1<-lm(mpg~wt, data=mtcars)   ### gives the estimates of our intercept
+
+summary(lm1)
+##anova is used for multiple categorical variable. 
+anova(lm1)
+## correlation analysis 
+cor.test(mtcars$wt,mtcars$mpg)
+
+##ALl these test are basically running the linear regression in the background. 
+```
+
+
+
+```{r}
+model <- lm(mpg~wt, data = mtcars)
+
+ggplot(model, aes(y = .resid, x = .fitted)) +
+  geom_point() +
+  geom_hline(yintercept = 0)
+bull.rich<-read.csv("Linear_model/Bull_richness.csv",na.strings="na")
+bull.rich.sub<-bull.rich %>% 
+filter(GrowthStage=="V8" & Treatment=="Conv.")
+
+## t-test
+t.test(richness~Fungicide,data=bull.rich.sub)
+#linear model
+summary(lm(richness~Fungicide,data=bull.rich.sub))
+anova(lm(richness~Fungicide,data=bull.rich.sub))
+
+```
+
+```{r}
+bull.rich.sub2 <- bull.rich %>%
+  filter(Fungicide == "C" & Treatment == "Conv." & Crop == "Corn")
+#bull.rich.sub2$GrowthStage <- #factor(bull.rich.sub2$GrowthStage, levels = c("V6", "V8", "V15"))
+
+ggplot(bull.rich.sub2, aes(x = GrowthStage, y = richness)) +
+  geom_boxplot()
+summary(lm(richness~GrowthStage, data=bull.rich.sub2))
+lm3<-lm(richness~GrowthStage, data=bull.rich.sub2)
+```
+## emmeans
+```{r}
+library(emmeans)
+library(multcomp)
+sessionInfo()
+
+##emmenas for pairwise comparision
+lsmeans<-emmeans(lm3, ~GrowthStage)
+results_lsmeans<-cld(lsmeans,alpha=0.05, details=T)
+### groups that do show different number are significantly different than each other. 
+```
+
+```{r}
+bull.rich.sub3 <- bull.rich %>%
+  filter(Treatment == "Conv." & Crop == "Corn")
+
+#bull.rich.sub3$GrowthStage <- factor(bull.rich.sub3$GrowthStage, levels = c("V6", "V8", "V15"))
+lm.interaction<-lm(richness~GrowthStage*Fungicide, data=bull.rich.sub3)
+summary(lm.interaction)
+anova(lm.interaction)
+lsmeans<-emmeans(lm.interaction, ~Fungicide| GrowthStage)  ##3effect of fungicide on growthstage.
+results_lsmeans<-cld(lsmeans,alpha=0.05, details=T)
+
+ggplot(bull.rich.sub3, aes(x=GrowthStage, y=richness,colour=Fungicide))+
+  geom_boxplot()
+```
+
+## Mixed effect models
+In mixed-effects models, we have fixed and random effects terms. The random effects term is something that affects the variation in y. A fixed effect is something that affects the mean of y. There are NO rules that determine what is a fixed or random effect.
+```{r}
+library(lme4)
+#lme0 <- lm(richness ~ GrowthStage*Fungicide, data = bull.rich.sub3)
+lm.interaction2 <- lmer(richness ~ GrowthStage*Fungicide + (1|Rep), data = bull.rich.sub3)   ### Rep is the random variable here. 
+summary(lm.interaction2)
+summary(lm.interaction)
+lsmeans<-emmeans(lm.interaction2, ~Fungicide|GrowthStage)
+results_lsmeans<-cld(lsmeans,alpha=0.05, details=T)
+```
+
+
