@@ -1704,6 +1704,9 @@ ggplot(bull.rich.sub2, aes(x = GrowthStage, y = richness)) +
 lsmeans&lt;-emmeans(lm3, ~GrowthStage)
 results_lsmeans&lt;-cld(lsmeans,alpha=0.05, details=T)
 ### groups that do show different number are significantly different than each other. </code></pre>
+</div>
+<div id="interaction" class="section level2">
+<h2>Interaction</h2>
 <pre class="r"><code>bull.rich.sub3 &lt;- bull.rich %&gt;%
   filter(Treatment == &quot;Conv.&quot; &amp; Crop == &quot;Corn&quot;)
 

@@ -82,6 +82,7 @@ results_lsmeans<-cld(lsmeans,alpha=0.05, details=T)
 ### groups that do show different number are significantly different than each other. 
 ```
 
+## Interaction
 ```{r}
 bull.rich.sub3 <- bull.rich %>%
   filter(Treatment == "Conv." & Crop == "Corn")
