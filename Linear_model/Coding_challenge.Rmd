@@ -3,11 +3,11 @@ title: "Coding challenge linear model"
 author: "Bibechana Paudel"
 date: "2025-04-02"
 output:
-  md_document: 
-    variant: gfm
   html_document:
      toc: TRUE
      toc_float: TRUE
+  md_document: 
+    variant: gfm
 ---
 
 ## Question 1
@@ -39,12 +39,13 @@ anova(lm1)
 **Based on the results of the linear model in question 2, do you need to fit the interaction term? Provide a simplified linear model without the interaction term but still testing both main effects. Provide the summary and ANOVA results. Then, interpret the intercept and the coefficient for Treatment 2.**
 
 **Answer:** No, we do not need to fit the interaction term since the interaction of Day after planting and treatment is not significant as shown by the summary of linear model and the anova (p value is 1). 
+
 ```{r}
 lm2<-lm(Emergence~Treatment+DaysAfterPlanting, data=Plantemergence)
 summary(lm2)
 ```
 
-**Answer:** The intercept is the average emergence for Treatment 1 at 7 days after plantation,which is 182.163. The coefficient for Treatment 2 is -134.531 meaning that the emergence of plant with treatment 2 is expected to decrease by 134.531 units in comparison to treatment 1.
+**Answer:** The intercept is the average emergence for Treatment 1 at 7 days after plantation,which is 182.163. The coefficient for Treatment 2 is -134.531 meaning that the emergence of plant with treatment 2 is 134.531 units less in comparison to treatment 1.
 
 ## Question 4
 **Calculate the least square means for Treatment using the emmeans package and perform a Tukey separation with the compact letter display using the cld function.Interpret the results.**
@@ -54,7 +55,7 @@ results_lsmeans<-cld(lsmeans,alpha=0.05, details=T)
 results_lsmeans
 ```
 
-**Answer:** In the result, the different number under. group signifies that the group are significantly different. Here, the lowest emergence is in Treatment 2, followed by 7. In addition, treatment 7,1,9,4, and 8 are statistically similar. Moreover, the Treatment 6,3,and 5 have large number of emergence but they are statistically similar to each other and all other treatment except treatment 2.
+**Answer:** In the result, the different number under ". group" signifies that the group are significantly different. Here, the lowest emergence is in Treatment 2, followed by 7. In addition, treatment 7,1,9,4, and 8 are statistically similar. Moreover, the Treatment 6,3,and 5 have greater emergence but they are statistically similar to each other and all other treatment except treatment 2.
 
 ## Question 5
 

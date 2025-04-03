@@ -200,7 +200,7 @@ summary(lm2)
 **Answer:** The intercept is the average emergence for Treatment 1 at 7
 days after plantation,which is 182.163. The coefficient for Treatment 2
 is -134.531 meaning that the emergence of plant with treatment 2 is
-expected to decrease by 134.531 units in comparison to treatment 1.
+134.531 units less in comparison to treatment 1.
 
 ## Question 4
 
@@ -276,12 +276,12 @@ results_lsmeans
     ## Results are averaged over the levels of: DaysAfterPlanting 
     ## P value adjustment: tukey method for comparing a family of 9 estimates
 
-**Answer:** In the result, the different number under. group signifies
-that the group are significantly different. Here, the lowest emergence
-is in Treatment 2, followed by 7. In addition, treatment 7,1,9,4, and 8
-are statistically similar. Moreover, the Treatment 6,3,and 5 have large
-number of emergence but they are statistically similar to each other and
-all other treatment except treatment 2.
+**Answer:** In the result, the different number under “. group”
+signifies that the group are significantly different. Here, the lowest
+emergence is in Treatment 2, followed by 7. In addition, treatment
+7,1,9,4, and 8 are statistically similar. Moreover, the Treatment
+6,3,and 5 have greater emergence but they are statistically similar to
+each other and all other treatment except treatment 2.
 
 ## Question 5
 

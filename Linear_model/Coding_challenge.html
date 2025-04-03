@@ -1621,7 +1621,8 @@ Provide the summary and ANOVA results. Then, interpret the intercept and
 the coefficient for Treatment 2.</strong></p>
 <p><strong>Answer:</strong> No, we do not need to fit the interaction
 term since the interaction of Day after planting and treatment is not
-significant as shown by the summary of linear model and the anova.</p>
+significant as shown by the summary of linear model and the anova (p
+value is 1).</p>
 <pre class="r"><code>lm2&lt;-lm(Emergence~Treatment+DaysAfterPlanting, data=Plantemergence)
 summary(lm2)</code></pre>
 <pre><code>## 
@@ -1655,8 +1656,7 @@ summary(lm2)</code></pre>
 <p><strong>Answer:</strong> The intercept is the average emergence for
 Treatment 1 at 7 days after plantation,which is 182.163. The coefficient
 for Treatment 2 is -134.531 meaning that the emergence of plant with
-treatment 2 is expected to decrease by 134.531 units in comparison to
-treatment 1.</p>
+treatment 2 is 134.531 units less in comparison to treatment 1.</p>
 </div>
 <div id="question-4" class="section level2">
 <h2>Question 4</h2>
@@ -1727,13 +1727,12 @@ results_lsmeans</code></pre>
 ## 
 ## Results are averaged over the levels of: DaysAfterPlanting 
 ## P value adjustment: tukey method for comparing a family of 9 estimates</code></pre>
-<p><strong>Answer:</strong> In the result, the different number under.
-group signifies that the group are significantly different. Here, the
+<p><strong>Answer:</strong> In the result, the different number under “.
+group” signifies that the group are significantly different. Here, the
 lowest emergence is in Treatment 2, followed by 7. In addition,
 treatment 7,1,9,4, and 8 are statistically similar. Moreover, the
-Treatment 6,3,and 5 have large number of emergence but they are
-statistically similar to each other and all other treatment except
-treatment 2.</p>
+Treatment 6,3,and 5 have greater emergence but they are statistically
+similar to each other and all other treatment except treatment 2.</p>
 </div>
 <div id="question-5" class="section level2">
 <h2>Question 5</h2>
