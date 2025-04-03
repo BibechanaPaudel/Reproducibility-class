@@ -161,7 +161,7 @@ coefficient for Treatment 2.**
 
 **Answer:** No, we do not need to fit the interaction term since the
 interaction of Day after planting and treatment is not significant as
-shown by the summary of linear model and the anova.
+shown by the summary of linear model and the anova (p value is 1).
 
 ``` r
 lm2<-lm(Emergence~Treatment+DaysAfterPlanting, data=Plantemergence)

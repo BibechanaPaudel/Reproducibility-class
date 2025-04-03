@@ -38,7 +38,7 @@ anova(lm1)
 ## Question 3
 **Based on the results of the linear model in question 2, do you need to fit the interaction term? Provide a simplified linear model without the interaction term but still testing both main effects. Provide the summary and ANOVA results. Then, interpret the intercept and the coefficient for Treatment 2.**
 
-**Answer:** No, we do not need to fit the interaction term since the interaction of Day after planting and treatment is not significant as shown by the summary of linear model and the anova. 
+**Answer:** No, we do not need to fit the interaction term since the interaction of Day after planting and treatment is not significant as shown by the summary of linear model and the anova (p value is 1). 
 ```{r}
 lm2<-lm(Emergence~Treatment+DaysAfterPlanting, data=Plantemergence)
 summary(lm2)
