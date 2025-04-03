@@ -1488,11 +1488,12 @@ border-radius: 0px;
 
 <div id="question-1" class="section level2">
 <h2>Question 1</h2>
-<p>Read in the data called “PlantEmergence.csv” using a relative file
-path and load the following libraries. tidyverse, lme4, emmeans,
+<p><strong>Read in the data called “PlantEmergence.csv” using a relative
+file path and load the following libraries. tidyverse, lme4, emmeans,
 multcomp, and multcompView. Turn the Treatment , DaysAfterPlanting and
-Rep into factors using the function as.factor STAND<span class="math inline">\(Treatment &lt;- as.factor(STAND\)</span>Treatment)
-# example shown here.</p>
+Rep into factors using the function as.factor</strong></p>
+<p><strong>STAND<span class="math inline">\(Treatment &lt;-
+as.factor(STAND\)</span>Treatment) # example shown here.</strong></p>
 <pre class="r"><code>library(tidyverse)</code></pre>
 <pre><code>## ── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──
 ## ✔ dplyr     1.1.4     ✔ readr     2.1.5
@@ -1542,9 +1543,9 @@ Plantemergence$Rep&lt;-as.factor(Plantemergence$Rep)</code></pre>
 </div>
 <div id="question-2" class="section level2">
 <h2>Question 2</h2>
-<p>Fit a linear model to predict Emergence using Treatment and
+<p><strong>Fit a linear model to predict Emergence using Treatment and
 DaysAfterPlanting along with the interaction. Provide the summary of the
-linear model and ANOVA results.</p>
+linear model and ANOVA results.</strong></p>
 <pre class="r"><code>lm1&lt;-lm(Emergence~Treatment*DaysAfterPlanting, data=Plantemergence)
 summary(lm1)</code></pre>
 <pre><code>## 
@@ -1613,14 +1614,14 @@ summary(lm1)</code></pre>
 </div>
 <div id="question-3" class="section level2">
 <h2>Question 3</h2>
-<p>Based on the results of the linear model in question 2, do you need
-to fit the interaction term? Provide a simplified linear model without
-the interaction term but still testing both main effects. Provide the
-summary and ANOVA results. Then, interpret the intercept and the
-coefficient for Treatment 2. Answer: No, we do not need to fit the
-interaction term since the interaction of Day after planting and
-treatment is not significant as shown by the summary of linear model and
-the anova.</p>
+<p><strong>Based on the results of the linear model in question 2, do
+you need to fit the interaction term? Provide a simplified linear model
+without the interaction term but still testing both main effects.
+Provide the summary and ANOVA results. Then, interpret the intercept and
+the coefficient for Treatment 2.</strong></p>
+<p><strong>Answer:</strong> No, we do not need to fit the interaction
+term since the interaction of Day after planting and treatment is not
+significant as shown by the summary of linear model and the anova.</p>
 <pre class="r"><code>lm2&lt;-lm(Emergence~Treatment+DaysAfterPlanting, data=Plantemergence)
 summary(lm2)</code></pre>
 <pre><code>## 
@@ -1651,16 +1652,17 @@ summary(lm2)</code></pre>
 ## Residual standard error: 9.688 on 132 degrees of freedom
 ## Multiple R-squared:  0.958,  Adjusted R-squared:  0.9545 
 ## F-statistic: 273.6 on 11 and 132 DF,  p-value: &lt; 2.2e-16</code></pre>
-<p>Answer: The intercept is the average emergence for Treatment 1 at 7
-days after plantation,which is 182.163. The coefficient for Treatment 2
-is -134.531 meaning that the emergence of plant with treatment 2 is
-expected to decrease by 134.531 units in comparison to treatment 1.</p>
+<p><strong>Answer:</strong> The intercept is the average emergence for
+Treatment 1 at 7 days after plantation,which is 182.163. The coefficient
+for Treatment 2 is -134.531 meaning that the emergence of plant with
+treatment 2 is expected to decrease by 134.531 units in comparison to
+treatment 1.</p>
 </div>
 <div id="question-4" class="section level2">
 <h2>Question 4</h2>
-<p>Calculate the least square means for Treatment using the emmeans
-package and perform a Tukey separation with the compact letter display
-using the cld function.Interpret the results.</p>
+<p><strong>Calculate the least square means for Treatment using the
+emmeans package and perform a Tukey separation with the compact letter
+display using the cld function.Interpret the results.</strong></p>
 <pre class="r"><code>lsmeans&lt;-emmeans(lm2, ~Treatment)
 results_lsmeans&lt;-cld(lsmeans,alpha=0.05, details=T)
 results_lsmeans</code></pre>
@@ -1725,19 +1727,20 @@ results_lsmeans</code></pre>
 ## 
 ## Results are averaged over the levels of: DaysAfterPlanting 
 ## P value adjustment: tukey method for comparing a family of 9 estimates</code></pre>
-<p>Answer: In the result, the different number under. group signifies
-that the group are significantly different. Here, the lowest emergence
-is in Treatment 2, followed by 7. In addition, treatment 7,1,9,4, and 8
-are statistically similar. Moreover, the Treatment 6,3,and 5 have large
-number of emergence but they are statistically similar to each other and
-all other treatment except treatment 2.</p>
+<p><strong>Answer:</strong> In the result, the different number under.
+group signifies that the group are significantly different. Here, the
+lowest emergence is in Treatment 2, followed by 7. In addition,
+treatment 7,1,9,4, and 8 are statistically similar. Moreover, the
+Treatment 6,3,and 5 have large number of emergence but they are
+statistically similar to each other and all other treatment except
+treatment 2.</p>
 </div>
 <div id="question-5" class="section level2">
 <h2>Question 5</h2>
-<p>The provided function lets you dynamically add a linear model plus
-one factor from that model and plots a bar chart with letters denoting
-treatment differences. Use this model to generate the plot shown below.
-Explain the significance of the letters.</p>
+<p><strong>The provided function lets you dynamically add a linear model
+plus one factor from that model and plots a bar chart with letters
+denoting treatment differences. Use this model to generate the plot
+shown below. Explain the significance of the letters.</strong></p>
 <pre class="r"><code>plot_cldbars_onefactor &lt;- function(lm_model, factor) {
 data &lt;- lm_model$model
 variables &lt;- colnames(lm_model$model)
@@ -1772,12 +1775,12 @@ theme_classic()
 return(plot)
 }
 plot1&lt;- plot_cldbars_onefactor(lm2,&quot;Treatment&quot;)</code></pre>
-<p>Answer: The letters above the bars represent statistical groupings
-based on Tukey’s HSD at a significance level of 0.05. The different
-letters in the plot signifies the significantly different groups while
-those that share the the same letter are not significantly different
-from each other. In the plot, treatment 2 with c has the lowest
-emergence and is significantly different from all other
+<p><strong>Answer:</strong> The letters above the bars represent
+statistical groupings based on Tukey’s HSD at a significance level of
+0.05. The different letters in the plot signifies the significantly
+different groups while those that share the the same letter are not
+significantly different from each other. In the plot, treatment 2 with c
+has the lowest emergence and is significantly different from all other
 treatments.Treatments labeled with a (3, 5, 6) have the highest
 emergence and do not differ significantly among themselves. Treatment 7
 as indicated by b has lower emergence than the “a” group.The ab group
@@ -1787,9 +1790,9 @@ emergence, while Treatments 3, 5, and 6 promotes the emergence.</p>
 </div>
 <div id="question-6" class="section level2">
 <h2>Question 6</h2>
-<p>Generate the gfm .md file along with a .html, .docx, or .pdf. Commit,
-and push the .md file to github and turn in the .html, .docx, or .pdf to
-Canvas. Provide me a link here to your github.</p>
+<p><strong>Generate the gfm .md file along with a .html, .docx, or .pdf.
+Commit, and push the .md file to github and turn in the .html, .docx, or
+.pdf to Canvas. Provide me a link here to your github.</strong></p>
 <p><a href="https://github.com/BibechanaPaudel/Reproducibility-class">Github</a></p>
 <p><a href="https://github.com/BibechanaPaudel/Reproducibility-class/blob/main/Linear_model/Coding_challenge.md">md.file</a></p>
 </div>

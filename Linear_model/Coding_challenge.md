@@ -1,10 +1,11 @@
 ## Question 1
 
-Read in the data called “PlantEmergence.csv” using a relative file path
-and load the following libraries. tidyverse, lme4, emmeans, multcomp,
-and multcompView. Turn the Treatment , DaysAfterPlanting and Rep into
-factors using the function as.factor
-STAND$Treatment <- as.factor(STAND$Treatment) \# example shown here.
+**Read in the data called “PlantEmergence.csv” using a relative file
+path and load the following libraries. tidyverse, lme4, emmeans,
+multcomp, and multcompView. Turn the Treatment , DaysAfterPlanting and
+Rep into factors using the function as.factor**
+
+**STAND$Treatment <- as.factor(STAND$Treatment) \# example shown here.**
 
 ``` r
 library(tidyverse)
@@ -73,9 +74,9 @@ Plantemergence$Rep<-as.factor(Plantemergence$Rep)
 
 ## Question 2
 
-Fit a linear model to predict Emergence using Treatment and
+**Fit a linear model to predict Emergence using Treatment and
 DaysAfterPlanting along with the interaction. Provide the summary of the
-linear model and ANOVA results.
+linear model and ANOVA results.**
 
 ``` r
 lm1<-lm(Emergence~Treatment*DaysAfterPlanting, data=Plantemergence)
@@ -152,14 +153,15 @@ anova(lm1)
 
 ## Question 3
 
-Based on the results of the linear model in question 2, do you need to
+**Based on the results of the linear model in question 2, do you need to
 fit the interaction term? Provide a simplified linear model without the
 interaction term but still testing both main effects. Provide the
 summary and ANOVA results. Then, interpret the intercept and the
-coefficient for Treatment 2. Answer: No, we do not need to fit the
-interaction term since the interaction of Day after planting and
-treatment is not significant as shown by the summary of linear model and
-the anova.
+coefficient for Treatment 2.**
+
+**Answer:** No, we do not need to fit the interaction term since the
+interaction of Day after planting and treatment is not significant as
+shown by the summary of linear model and the anova.
 
 ``` r
 lm2<-lm(Emergence~Treatment+DaysAfterPlanting, data=Plantemergence)
@@ -195,16 +197,16 @@ summary(lm2)
     ## Multiple R-squared:  0.958,  Adjusted R-squared:  0.9545 
     ## F-statistic: 273.6 on 11 and 132 DF,  p-value: < 2.2e-16
 
-Answer: The intercept is the average emergence for Treatment 1 at 7 days
-after plantation,which is 182.163. The coefficient for Treatment 2 is
--134.531 meaning that the emergence of plant with treatment 2 is
+**Answer:** The intercept is the average emergence for Treatment 1 at 7
+days after plantation,which is 182.163. The coefficient for Treatment 2
+is -134.531 meaning that the emergence of plant with treatment 2 is
 expected to decrease by 134.531 units in comparison to treatment 1.
 
 ## Question 4
 
-Calculate the least square means for Treatment using the emmeans package
-and perform a Tukey separation with the compact letter display using the
-cld function.Interpret the results.
+**Calculate the least square means for Treatment using the emmeans
+package and perform a Tukey separation with the compact letter display
+using the cld function.Interpret the results.**
 
 ``` r
 lsmeans<-emmeans(lm2, ~Treatment)
@@ -274,19 +276,19 @@ results_lsmeans
     ## Results are averaged over the levels of: DaysAfterPlanting 
     ## P value adjustment: tukey method for comparing a family of 9 estimates
 
-Answer: In the result, the different number under. group signifies that
-the group are significantly different. Here, the lowest emergence is in
-Treatment 2, followed by 7. In addition, treatment 7,1,9,4, and 8 are
-statistically similar. Moreover, the Treatment 6,3,and 5 have large
+**Answer:** In the result, the different number under. group signifies
+that the group are significantly different. Here, the lowest emergence
+is in Treatment 2, followed by 7. In addition, treatment 7,1,9,4, and 8
+are statistically similar. Moreover, the Treatment 6,3,and 5 have large
 number of emergence but they are statistically similar to each other and
 all other treatment except treatment 2.
 
 ## Question 5
 
-The provided function lets you dynamically add a linear model plus one
+**The provided function lets you dynamically add a linear model plus one
 factor from that model and plots a bar chart with letters denoting
 treatment differences. Use this model to generate the plot shown below.
-Explain the significance of the letters.
+Explain the significance of the letters.**
 
 ``` r
 plot_cldbars_onefactor <- function(lm_model, factor) {
@@ -325,24 +327,24 @@ return(plot)
 plot1<- plot_cldbars_onefactor(lm2,"Treatment")
 ```
 
-Answer: The letters above the bars represent statistical groupings based
-on Tukey’s HSD at a significance level of 0.05. The different letters in
-the plot signifies the significantly different groups while those that
-share the the same letter are not significantly different from each
-other. In the plot, treatment 2 with c has the lowest emergence and is
-significantly different from all other treatments.Treatments labeled
-with a (3, 5, 6) have the highest emergence and do not differ
-significantly among themselves. Treatment 7 as indicated by b has lower
-emergence than the “a” group.The ab group (1, 4, 8, 9) falls between the
-highest and lowest emergence levels, showing intermediate performance.To
-sum,Treatment 2 negatively affects emergence, while Treatments 3, 5, and
-6 promotes the emergence.
+**Answer:** The letters above the bars represent statistical groupings
+based on Tukey’s HSD at a significance level of 0.05. The different
+letters in the plot signifies the significantly different groups while
+those that share the the same letter are not significantly different
+from each other. In the plot, treatment 2 with c has the lowest
+emergence and is significantly different from all other
+treatments.Treatments labeled with a (3, 5, 6) have the highest
+emergence and do not differ significantly among themselves. Treatment 7
+as indicated by b has lower emergence than the “a” group.The ab group
+(1, 4, 8, 9) falls between the highest and lowest emergence levels,
+showing intermediate performance.To sum,Treatment 2 negatively affects
+emergence, while Treatments 3, 5, and 6 promotes the emergence.
 
 ## Question 6
 
-Generate the gfm .md file along with a .html, .docx, or .pdf. Commit,
+**Generate the gfm .md file along with a .html, .docx, or .pdf. Commit,
 and push the .md file to github and turn in the .html, .docx, or .pdf to
-Canvas. Provide me a link here to your github.
+Canvas. Provide me a link here to your github.**
 
 [Github](https://github.com/BibechanaPaudel/Reproducibility-class)
 
