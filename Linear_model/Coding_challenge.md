@@ -195,10 +195,10 @@ summary(lm2)
     ## Multiple R-squared:  0.958,  Adjusted R-squared:  0.9545 
     ## F-statistic: 273.6 on 11 and 132 DF,  p-value: < 2.2e-16
 
-Answer: The intercept is the average days of emergence for Treatment
-1,which is 182.163. The coefficient for Treatment 2 is -134.531 meaning
-that the emergence of plant with treatment 2 is expected to decrease by
-134.531 units in comparison to treatment 1.
+Answer: The intercept is the average emergence for Treatment 1 at 7 days
+after plantation,which is 182.163. The coefficient for Treatment 2 is
+-134.531 meaning that the emergence of plant with treatment 2 is
+expected to decrease by 134.531 units in comparison to treatment 1.
 
 ## Question 4
 
@@ -276,8 +276,8 @@ results_lsmeans
 
 Answer: In the result, the different number under. group signifies that
 the group are significantly different. Here, the lowest emergence is in
-Treatment 2, followed by 7. In addition, treatment 7, 1,9,4, and 8 are
-statistically similar. Moreover, the Treatment 6,3 , and 5 have large
+Treatment 2, followed by 7. In addition, treatment 7,1,9,4, and 8 are
+statistically similar. Moreover, the Treatment 6,3,and 5 have large
 number of emergence but they are statistically similar to each other and
 all other treatment except treatment 2.
 
@@ -334,9 +334,9 @@ significantly different from all other treatments.Treatments labeled
 with a (3, 5, 6) have the highest emergence and do not differ
 significantly among themselves. Treatment 7 as indicated by b has lower
 emergence than the “a” group.The ab group (1, 4, 8, 9) falls between the
-highest and lowest emergence levels, showing intermediate performance.
-To sum,Treatment 2 negatively affects emergence, while Treatments 3, 5,
-and 6 promotes the emergence.
+highest and lowest emergence levels, showing intermediate performance.To
+sum,Treatment 2 negatively affects emergence, while Treatments 3, 5, and
+6 promotes the emergence.
 
 ## Question 6
 
